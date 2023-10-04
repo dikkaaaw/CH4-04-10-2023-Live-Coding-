@@ -52,7 +52,7 @@ const findProductById = async (req, res) => {
             status: "success",
             message: "Data found!",
             data : {
-                product
+                Product
             }
         })
     } catch (err) {
@@ -65,7 +65,7 @@ const findProductById = async (req, res) => {
 const updateProduct = async (req, res) => {
     const { name, price, stock } = req.body;
     try {
-        const product = await product.update({
+        const Product = await product.update({
             name,
             stock,
             price
@@ -75,12 +75,32 @@ const updateProduct = async (req, res) => {
                     id: req.params.id,
                 }
             },
-        );
+        );  
         res.status(200).json({
             status: "success",
+            message: "Success update data!",
             data: {
-                product,
+                Product,
             },
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: "failed",
+            mesagge: err.mesagge
+        });
+    }
+};
+
+const deleteProduct = async (req, res) => {
+    try {
+        const Product = await product.destroy({
+            where: {
+                id: req.params.id,
+            }
+        });  
+        res.status(200).json({
+            status: "success",
+            message: "Success delete data!",
         });
     } catch (err) {
         res.status(400).json({
@@ -94,5 +114,6 @@ module.exports = {
     createProduct,
     findAllProduct,
     findProductById,
-    updateProduct
+    updateProduct,
+    deleteProduct
 }
