@@ -5,6 +5,6 @@ const checkToken = require("../middlewares/checkToken");
 
 router.post("/register", Auth.register);
 router.post("/login", Auth.login);
-router.get("/checktoken", checkToken, Auth.checktoken);
+router.get("/checktoken", checkToken, Auth.checkToken);
 
 module.exports = router;

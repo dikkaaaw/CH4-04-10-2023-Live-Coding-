@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
 
-      Shop.belongsTo(models.product, {
+      Shop.hasMany(models.product, {
         foreignKey: {
           name: "productId",
           allowNull: false,
